@@ -2,6 +2,7 @@ class Flashcard {
     constructor(question, answer) {
         this.question = question;
         this.answer = answer;
+        this.isFlipped = false; // P660e
     }
 }
 
@@ -25,11 +26,10 @@ class FlashcardSystem {
     displayFlashcard(index) {
         if (index >= 0 && index < this.flashcards.length) {
             const flashcard = this.flashcards[index];
-            const flashcardContainer = document.getElementById('flashcard-container');
+            const flashcardContainer = document.getElementById('flashcard');
             flashcardContainer.innerHTML = `
-                <div class="flashcard">
-                    <p>${flashcard.question}</p>
-                    <p>${flashcard.answer}</p>
+                <div class="flashcard ${flashcard.isFlipped ? 'flipped' : ''}">
+                    <p>${flashcard.isFlipped ? flashcard.answer : flashcard.question}</p>
                 </div>
             `;
         }
@@ -48,6 +48,12 @@ class FlashcardSystem {
             this.displayFlashcard(this.currentIndex);
         }
     }
+
+    flipFlashcard() {
+        const flashcard = this.flashcards[this.currentIndex];
+        flashcard.isFlipped = !flashcard.isFlipped;
+        this.displayFlashcard(this.currentIndex);
+    }
 }
 
 const flashcardSystem = new FlashcardSystem();
@@ -61,4 +67,14 @@ document.getElementById('next-btn').addEventListener('click', () => {
 
 document.getElementById('prev-btn').addEventListener('click', () => {
     flashcardSystem.prevFlashcard();
+});
+
+document.getElementById('flashcard').addEventListener('click', () => {
+    flashcardSystem.flipFlashcard();
+});
+
+document.getElementById('flashcard').addEventListener('keydown', (event) => {
+    if (event.code === 'Space') {
+        flashcardSystem.flipFlashcard();
+    }
 });
