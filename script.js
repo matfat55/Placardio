@@ -2,7 +2,7 @@ class Flashcard {
     constructor(question, answer) {
         this.question = question;
         this.answer = answer;
-        this.isFlipped = false; // P660e
+        this.isFlipped = false;
     }
 }
 
