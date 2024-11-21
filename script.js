@@ -29,7 +29,8 @@ class FlashcardSystem {
             const flashcardContainer = document.getElementById('flashcard');
             flashcardContainer.innerHTML = `
                 <div class="flashcard ${flashcard.isFlipped ? 'flipped' : ''}">
-                    <p>${flashcard.isFlipped ? flashcard.answer : flashcard.question}</p>
+                    <p class="front">${flashcard.question}</p>
+                    <p class="back">${flashcard.answer}</p>
                 </div>
             `;
         }
@@ -76,5 +77,9 @@ document.getElementById('flashcard').addEventListener('click', () => {
 document.getElementById('flashcard').addEventListener('keydown', (event) => {
     if (event.code === 'Space') {
         flashcardSystem.flipFlashcard();
+    } else if (event.code === 'ArrowLeft' || event.code === 'KeyA') {
+        flashcardSystem.prevFlashcard();
+    } else if (event.code === 'ArrowRight' || event.code === 'KeyD') {
+        flashcardSystem.nextFlashcard();
     }
 });
