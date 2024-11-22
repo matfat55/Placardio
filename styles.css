@@ -46,12 +46,14 @@ button:hover {
     transition: transform 0.6s;
     transform-style: preserve-3d;
     position: relative;
+    perspective: 1000px; /* Added perspective for 3D effect */
     backface-visibility: hidden; /* Moved backface-visibility to parent */
 }
 
 .flashcard.flipped {
     transform: rotateY(180deg);
 }
+
 
 .flashcard p {
     position: absolute;
