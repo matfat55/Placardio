@@ -66,6 +66,16 @@ document.getElementById('next-btn').addEventListener('click', () => {
     flashcardSystem.nextFlashcard();
 });
 
+document.getElementById('add-btn').addEventListener('click', () => {
+    const question = document.getElementById('question-input').value;
+    const answer = document.getElementById('answer-input').value;
+    flashcardSystem.addFlashcard(question, answer);
+    flashcardSystem.displayFlashcard(flashcardSystem.flashcards.length -1);
+    document.getElementById('question-input').value = '';
+    document.getElementById('answer-input').value = '';
+
+});
+
 document.getElementById('prev-btn').addEventListener('click', () => {
     flashcardSystem.prevFlashcard();
 });
